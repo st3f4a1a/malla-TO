@@ -2,48 +2,73 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Malla Interactiva</title>
+  <title>Malla Interactiva - Terapia Ocupacional</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      padding-top: 50px;
+      padding: 20px;
+      background-color: #f9f9f9;
     }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(5, 100px);
-      grid-gap: 10px;
-    }
-    .cell {
-      background-color: #ddd;
-      width: 100px;
-      height: 100px;
+    h2 {
       text-align: center;
-      line-height: 100px;
+    }
+    .semestre {
+      margin-bottom: 30px;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .semestre h3 {
+      margin-top: 0;
+      color: #007BFF;
+    }
+    .ramos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .ramo {
+      flex: 1 1 calc(25% - 10px);
+      background: #e0f0ff;
+      padding: 10px;
+      border-radius: 6px;
+      text-align: center;
       cursor: pointer;
       transition: background 0.3s;
     }
-    .cell:hover {
-      background-color: #00aaff;
-      color: white;
+    .ramo:hover {
+      background: #c6e4ff;
+    }
+    .info-box {
+      margin-top: 20px;
+      padding: 15px;
+      border: 1px solid #007BFF;
+      background-color: #e9f5ff;
+      display: none;
+      border-radius: 6px;
+    }
+    @media (max-width: 600px) {
+      .ramo {
+        flex: 1 1 100%;
+      }
     }
   </style>
 </head>
 <body>
 
-  <div class="grid" id="malla"></div>
+<h2>Malla Curricular Interactiva - Terapia Ocupacional</h2>
 
-  <script>
-    const grid = document.getElementById('malla');
-    for (let i = 0; i < 25; i++) {
-      const cell = document.createElement('div');
-      cell.className = 'cell';
-      cell.textContent = i + 1;
-      cell.onclick = () => alert(`Clic en la celda ${i + 1}`);
-      grid.appendChild(cell);
-    }
-  </script>
+<div id="malla-container"></div>
+<div id="info" class="info-box"></div>
 
-</body>
-</html>
+<script>
+  const malla = {
+    1: [
+      { nombre: "Introducción a la Terapia Ocupacional", descripcion: "Presentación general de la disciplina, su historia, campos de acción y enfoque centrado en la ocupación." },
+      { nombre: "Terapia Ocupacional y Estrategias de Intervención I", descripcion: "Primera aproximación a las técnicas y modelos de intervención en terapia ocupacional." },
+      { nombre: "Fundamentos Psicológicos y Socioculturales de la Intervención", descripcion: "Bases psicosociales para comprender el comportamiento humano y su contexto." },
+      { nombre: "Biología Celular y Genética", descripcion: "Estudio de la célula, su estructura, funciones, y principios de genética aplicados a la salud." },
+      { nombre: "Química", descripcion: "Conceptos básicos de química general orientados a las ciencias
+
