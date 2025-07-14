@@ -66,9 +66,114 @@
 <script>
   const malla = {
     1: [
-      { nombre: "Introducción a la Terapia Ocupacional", descripcion: "Presentación general de la disciplina, su historia, campos de acción y enfoque centrado en la ocupación." },
-      { nombre: "Terapia Ocupacional y Estrategias de Intervención I", descripcion: "Primera aproximación a las técnicas y modelos de intervención en terapia ocupacional." },
-      { nombre: "Fundamentos Psicológicos y Socioculturales de la Intervención", descripcion: "Bases psicosociales para comprender el comportamiento humano y su contexto." },
-      { nombre: "Biología Celular y Genética", descripcion: "Estudio de la célula, su estructura, funciones, y principios de genética aplicados a la salud." },
-      { nombre: "Química", descripcion: "Conceptos básicos de química general orientados a las ciencias
+      { nombre: "Introducción a la Terapia Ocupacional", descripcion: "Presentación de la disciplina, historia, enfoques y rol profesional." },
+      { nombre: "Terapia Ocupacional y Estrategias de Intervención I", descripcion: "Primer acercamiento a los métodos y técnicas de intervención." },
+      { nombre: "Fundamentos Psicológicos y Socioculturales de la Intervención", descripcion: "Bases de la intervención desde lo psicológico y social." },
+      { nombre: "Biología Celular y Genética", descripcion: "Estructura celular, funciones, ADN, herencia genética aplicada a salud." },
+      { nombre: "Química", descripcion: "Fundamentos de química general, orientados a ciencias de la salud." },
+      { nombre: "Matemática", descripcion: "Matemáticas básicas: lógica, álgebra, funciones y razonamiento." },
+      { nombre: "Formación General I", descripcion: "Asignatura transversal que promueve el pensamiento crítico y la ciudadanía." }
+    ],
+    2: [
+      { nombre: "Fundamentos y Epistemología de la Ciencia de la Ocupación", descripcion: "Bases filosóficas y epistemológicas de la ocupación humana." },
+      { nombre: "Terapia Ocupacional y Estrategias de Intervención II", descripcion: "Profundización en enfoques y modelos de intervención ocupacional." },
+      { nombre: "Psicología General y Evolutiva", descripcion: "Estudio del desarrollo psicológico a lo largo de la vida." },
+      { nombre: "Morfología I", descripcion: "Estudio anatómico del cuerpo humano: estructura general." },
+      { nombre: "Bioquímica", descripcion: "Procesos químicos y moleculares en organismos vivos." },
+      { nombre: "Física", descripcion: "Principios físicos aplicados a la salud y el movimiento humano." },
+      { nombre: "Inglés I", descripcion: "Nivel inicial de inglés, comprensión lectora y vocabulario científico." }
+    ],
+    3: [
+      { nombre: "Modelos Pragmáticos del Estudio de la Ciencia de la Ocupación", descripcion: "Estudio aplicado de modelos pragmáticos de ocupación." },
+      { nombre: "Terapia Ocupacional y Estrategias de Intervención III", descripcion: "Aplicación de modelos terapéuticos en contextos reales." },
+      { nombre: "Antropología", descripcion: "Comprensión cultural del ser humano y su contexto social." },
+      { nombre: "Morfología II", descripcion: "Continuación del estudio anatómico detallado." },
+      { nombre: "Salud Pública", descripcion: "Enfoque en determinantes sociales y políticas de salud." },
+      { nombre: "Inglés II", descripcion: "Nivel intermedio de inglés técnico y comunicacional." },
+      { nombre: "Formación General II", descripcion: "Asignatura transversal enfocada en ética y pensamiento social." }
+    ],
+    4: [
+      { nombre: "Modelos Emergentes del Estudio de la Ocupación", descripcion: "Modelos innovadores y contemporáneos sobre la ocupación humana." },
+      { nombre: "Terapia Ocupacional y Estrategias de Intervención IV", descripcion: "Profundización en estrategias contextuales e interdisciplinarias." },
+      { nombre: "Psicología Social y del Trabajo", descripcion: "Interacción del individuo con su entorno social y laboral." },
+      { nombre: "Fisiología I: Fisiología General", descripcion: "Procesos fisiológicos básicos del cuerpo humano." },
+      { nombre: "Formación General III", descripcion: "Asignatura transversal que promueve la ciudadanía activa." },
+      { nombre: "Investigación en Ciencias de la Ocupación y T.O. I", descripcion: "Introducción a la investigación en terapia ocupacional." },
+      { nombre: "Práctica Integrada I", descripcion: "Primera experiencia práctica en contextos reales de intervención." }
+    ],
+    5: [
+      { nombre: "Ocupación y Redes", descripcion: "Relación entre ocupación, vínculos comunitarios y redes de apoyo." },
+      { nombre: "Terapia Ocupacional y Estrategias de Intervención V", descripcion: "Intervenciones en distintos ciclos vitales y escenarios comunitarios." },
+      { nombre: "Sociología", descripcion: "Estudio de las estructuras sociales y sus implicancias en salud." },
+      { nombre: "Fisiología II: Fisiología de Sistemas", descripcion: "Fisiología aplicada a sistemas corporales específicos." },
+      { nombre: "Inglés III", descripcion: "Desarrollo avanzado de competencias comunicativas en inglés." },
+      { nombre: "Investigación en Ciencias de la Ocupación y T.O. II", descripcion: "Formulación de proyectos de investigación ocupacional." },
+      { nombre: "Práctica Integrada II: en Educación/Trabajo", descripcion: "Intervención práctica en contextos educativos y laborales." }
+    ],
+    6: [
+      { nombre: "Ocupación y Cultura", descripcion: "Estudio de la ocupación desde una perspectiva intercultural." },
+      { nombre: "Terapia Ocupacional y Estrategias de Intervención VI", descripcion: "Enfoques de intervención complejos y multicausales." },
+      { nombre: "Aplicación de Aspectos Psicológicos y Socioculturales a la Intervención", descripcion: "Integración de conocimientos sociales y psicológicos en prácticas terapéuticas." },
+      { nombre: "Farmacología", descripcion: "Bases de farmacología clínica y su impacto en la ocupación." },
+      { nombre: "Salud Mental y Psicopatología", descripcion: "Trastornos mentales y su relación con la participación ocupacional." },
+      { nombre: "Investigación en Ciencias de la Ocupación y T.O. III", descripcion: "Implementación de estrategias de investigación aplicada." },
+      { nombre: "Práctica Integrada III: en Desarrollo Social/Justicia", descripcion: "Práctica en contextos de inclusión, justicia y derechos humanos." },
+      { nombre: "Formación General IV", descripcion: "Asignatura final transversal para fortalecer el rol social del profesional." }
+    ],
+    7: [
+      { nombre: "Historia y Perfiles Ocupacionales", descripcion: "Análisis histórico y perfiles de intervención en T.O." },
+      { nombre: "Terapia Ocupacional y Estrategias de Intervención VII", descripcion: "Desarrollo de intervenciones en casos clínicos avanzados." },
+      { nombre: "Alteraciones Neuromusculoesqueléticas", descripcion: "Trastornos del sistema musculoesquelético y sus efectos ocupacionales." },
+      { nombre: "Fisiopatología", descripcion: "Bases fisiopatológicas de enfermedades comunes." },
+      { nombre: "Investigación en Ciencias de la Ocupación y T.O. IV", descripcion: "Análisis e interpretación de resultados de investigación en T.O." },
+      { nombre: "Práctica Integrada IV: en Salud", descripcion: "Práctica avanzada en entornos clínicos de salud física o mental." },
+      { nombre: "Gestión en Salud I", descripcion: "Fundamentos de gestión institucional y políticas sanitarias." }
+    ],
+    8: [
+      { nombre: "Análisis Ocupacionales", descripcion: "Evaluación detallada de la ocupación humana en diferentes entornos." },
+      { nombre: "Terapia Ocupacional y Estrategias de Intervención VIII", descripcion: "Diseño de programas de intervención integrales." },
+      { nombre: "Gestión Aplicada a Terapia Ocupacional", descripcion: "Gestión de proyectos, servicios y equipos en contextos ocupacionales." },
+      { nombre: "Módulo Integrado Interdisciplinario Multiprofesional I", descripcion: "Trabajo en equipo interdisciplinario de salud." },
+      { nombre: "Módulo Integrado Interdisciplinario Multiprofesional II", descripcion: "Intervención colaborativa en salud desde múltiples disciplinas." },
+      { nombre: "Gestión en Salud II", descripcion: "Gestión avanzada en salud pública y servicios sociales." },
+      { nombre: "Formación General: Grupo de Indagación de la Práctica Profesional", descripcion: "Reflexión crítica y análisis de la propia práctica profesional." }
+    ],
+    9: [
+      { nombre: "Práctica Profesional I", descripcion: "Experiencia profesional supervisada en escenarios reales de intervención." },
+      { nombre: "Proyecto de Título", descripcion: "Diseño y desarrollo de un proyecto de investigación final." }
+    ],
+    10: [
+      { nombre: "Práctica Profesional II", descripcion: "Último periodo de práctica profesional integral y evaluación final." },
+      { nombre: "Taller de Evaluación Final", descripcion: "Espacio de integración, análisis y evaluación de competencias profesionales." }
+    ]
+  };
 
+  const container = document.getElementById("malla-container");
+
+  for (let semestre in malla) {
+    const box = document.createElement("div");
+    box.className = "semestre";
+    box.innerHTML = `<h3>Semestre ${semestre}</h3><div class="ramos"></div>`;
+
+    const ramosContainer = box.querySelector(".ramos");
+
+    malla[semestre].forEach((ramo, index) => {
+      const div = document.createElement("div");
+      div.className = "ramo";
+      div.innerText = ramo.nombre;
+      div.onclick = () => mostrarInfo(`Semestre ${semestre} - ${ramo.nombre}`, ramo.descripcion);
+      ramosContainer.appendChild(div);
+    });
+
+    container.appendChild(box);
+  }
+
+  function mostrarInfo(titulo, texto) {
+    const info = document.getElementById("info");
+    info.style.display = 'block';
+    info.innerHTML = `<strong>${titulo}</strong><p>${texto}</p>`;
+  }
+</script>
+
+</body>
+</html>
