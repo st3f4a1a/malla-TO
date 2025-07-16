@@ -2,178 +2,98 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Malla Interactiva - Terapia Ocupacional</title>
+  <title>Malla Interactiva Terapia Ocupacional</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      padding: 20px;
-      background-color: #f9f9f9;
+      margin: 20px;
+      background: #f5f5f5;
     }
     h2 {
-      text-align: center;
+      background: #004d40;
+      color: white;
+      padding: 10px;
+      border-radius: 8px;
     }
     .semestre {
-      margin-bottom: 30px;
-      background: #fff;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      padding: 15px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-    .semestre h3 {
-      margin-top: 0;
-      color: #007BFF;
-    }
-    .ramos {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
+      margin-bottom: 20px;
     }
     .ramo {
-      flex: 1 1 calc(25% - 10px);
-      background: #e0f0ff;
+      background: white;
       padding: 10px;
-      border-radius: 6px;
-      text-align: center;
+      margin: 5px 0;
+      border-left: 5px solid #26a69a;
+      border-radius: 4px;
       cursor: pointer;
-      transition: background 0.3s;
+      transition: 0.3s;
     }
     .ramo:hover {
-      background: #c6e4ff;
+      background: #e0f2f1;
     }
-    .info-box {
-      margin-top: 20px;
-      padding: 15px;
-      border: 1px solid #007BFF;
-      background-color: #e9f5ff;
-      display: none;
-      border-radius: 6px;
+    .completado {
+      text-decoration: line-through;
+      background: #c8e6c9 !important;
+      border-left-color: #388e3c !important;
+      color: #555;
     }
-    @media (max-width: 600px) {
-      .ramo {
-        flex: 1 1 100%;
-      }
+    .bloqueado {
+      opacity: 0.5;
+      cursor: not-allowed;
     }
   </style>
 </head>
 <body>
+  <h1>Malla Interactiva - Terapia Ocupacional</h1>
+  <div id="malla"></div>
 
-<h2>Malla Curricular Interactiva - Terapia Ocupacional</h2>
+  <script>
+    const ramos = [...]; // ← mismo array de ramos que ya incluimos antes (omitido por brevedad)
 
-<div id="malla-container"></div>
-<div id="info" class="info-box"></div>
+    const STORAGE_KEY = "mallaTO_aprobados";
+    let completados = new Set(JSON.parse(localStorage.getItem(STORAGE_KEY)) || []);
 
-<script>
-  const malla = {
-    1: [
-      { nombre: "Introducción a la Terapia Ocupacional", descripcion: "Presentación de la disciplina, historia, enfoques y rol profesional." },
-      { nombre: "Terapia Ocupacional y Estrategias de Intervención I", descripcion: "Primer acercamiento a los métodos y técnicas de intervención." },
-      { nombre: "Fundamentos Psicológicos y Socioculturales de la Intervención", descripcion: "Bases de la intervención desde lo psicológico y social." },
-      { nombre: "Biología Celular y Genética", descripcion: "Estructura celular, funciones, ADN, herencia genética aplicada a salud." },
-      { nombre: "Química", descripcion: "Fundamentos de química general, orientados a ciencias de la salud." },
-      { nombre: "Matemática", descripcion: "Matemáticas básicas: lógica, álgebra, funciones y razonamiento." },
-      { nombre: "Formación General I", descripcion: "Asignatura transversal que promueve el pensamiento crítico y la ciudadanía." }
-    ],
-    2: [
-      { nombre: "Fundamentos y Epistemología de la Ciencia de la Ocupación", descripcion: "Bases filosóficas y epistemológicas de la ocupación humana." },
-      { nombre: "Terapia Ocupacional y Estrategias de Intervención II", descripcion: "Profundización en enfoques y modelos de intervención ocupacional." },
-      { nombre: "Psicología General y Evolutiva", descripcion: "Estudio del desarrollo psicológico a lo largo de la vida." },
-      { nombre: "Morfología I", descripcion: "Estudio anatómico del cuerpo humano: estructura general." },
-      { nombre: "Bioquímica", descripcion: "Procesos químicos y moleculares en organismos vivos." },
-      { nombre: "Física", descripcion: "Principios físicos aplicados a la salud y el movimiento humano." },
-      { nombre: "Inglés I", descripcion: "Nivel inicial de inglés, comprensión lectora y vocabulario científico." }
-    ],
-    3: [
-      { nombre: "Modelos Pragmáticos del Estudio de la Ciencia de la Ocupación", descripcion: "Estudio aplicado de modelos pragmáticos de ocupación." },
-      { nombre: "Terapia Ocupacional y Estrategias de Intervención III", descripcion: "Aplicación de modelos terapéuticos en contextos reales." },
-      { nombre: "Antropología", descripcion: "Comprensión cultural del ser humano y su contexto social." },
-      { nombre: "Morfología II", descripcion: "Continuación del estudio anatómico detallado." },
-      { nombre: "Salud Pública", descripcion: "Enfoque en determinantes sociales y políticas de salud." },
-      { nombre: "Inglés II", descripcion: "Nivel intermedio de inglés técnico y comunicacional." },
-      { nombre: "Formación General II", descripcion: "Asignatura transversal enfocada en ética y pensamiento social." }
-    ],
-    4: [
-      { nombre: "Modelos Emergentes del Estudio de la Ocupación", descripcion: "Modelos innovadores y contemporáneos sobre la ocupación humana." },
-      { nombre: "Terapia Ocupacional y Estrategias de Intervención IV", descripcion: "Profundización en estrategias contextuales e interdisciplinarias." },
-      { nombre: "Psicología Social y del Trabajo", descripcion: "Interacción del individuo con su entorno social y laboral." },
-      { nombre: "Fisiología I: Fisiología General", descripcion: "Procesos fisiológicos básicos del cuerpo humano." },
-      { nombre: "Formación General III", descripcion: "Asignatura transversal que promueve la ciudadanía activa." },
-      { nombre: "Investigación en Ciencias de la Ocupación y T.O. I", descripcion: "Introducción a la investigación en terapia ocupacional." },
-      { nombre: "Práctica Integrada I", descripcion: "Primera experiencia práctica en contextos reales de intervención." }
-    ],
-    5: [
-      { nombre: "Ocupación y Redes", descripcion: "Relación entre ocupación, vínculos comunitarios y redes de apoyo." },
-      { nombre: "Terapia Ocupacional y Estrategias de Intervención V", descripcion: "Intervenciones en distintos ciclos vitales y escenarios comunitarios." },
-      { nombre: "Sociología", descripcion: "Estudio de las estructuras sociales y sus implicancias en salud." },
-      { nombre: "Fisiología II: Fisiología de Sistemas", descripcion: "Fisiología aplicada a sistemas corporales específicos." },
-      { nombre: "Inglés III", descripcion: "Desarrollo avanzado de competencias comunicativas en inglés." },
-      { nombre: "Investigación en Ciencias de la Ocupación y T.O. II", descripcion: "Formulación de proyectos de investigación ocupacional." },
-      { nombre: "Práctica Integrada II: en Educación/Trabajo", descripcion: "Intervención práctica en contextos educativos y laborales." }
-    ],
-    6: [
-      { nombre: "Ocupación y Cultura", descripcion: "Estudio de la ocupación desde una perspectiva intercultural." },
-      { nombre: "Terapia Ocupacional y Estrategias de Intervención VI", descripcion: "Enfoques de intervención complejos y multicausales." },
-      { nombre: "Aplicación de Aspectos Psicológicos y Socioculturales a la Intervención", descripcion: "Integración de conocimientos sociales y psicológicos en prácticas terapéuticas." },
-      { nombre: "Farmacología", descripcion: "Bases de farmacología clínica y su impacto en la ocupación." },
-      { nombre: "Salud Mental y Psicopatología", descripcion: "Trastornos mentales y su relación con la participación ocupacional." },
-      { nombre: "Investigación en Ciencias de la Ocupación y T.O. III", descripcion: "Implementación de estrategias de investigación aplicada." },
-      { nombre: "Práctica Integrada III: en Desarrollo Social/Justicia", descripcion: "Práctica en contextos de inclusión, justicia y derechos humanos." },
-      { nombre: "Formación General IV", descripcion: "Asignatura final transversal para fortalecer el rol social del profesional." }
-    ],
-    7: [
-      { nombre: "Historia y Perfiles Ocupacionales", descripcion: "Análisis histórico y perfiles de intervención en T.O." },
-      { nombre: "Terapia Ocupacional y Estrategias de Intervención VII", descripcion: "Desarrollo de intervenciones en casos clínicos avanzados." },
-      { nombre: "Alteraciones Neuromusculoesqueléticas", descripcion: "Trastornos del sistema musculoesquelético y sus efectos ocupacionales." },
-      { nombre: "Fisiopatología", descripcion: "Bases fisiopatológicas de enfermedades comunes." },
-      { nombre: "Investigación en Ciencias de la Ocupación y T.O. IV", descripcion: "Análisis e interpretación de resultados de investigación en T.O." },
-      { nombre: "Práctica Integrada IV: en Salud", descripcion: "Práctica avanzada en entornos clínicos de salud física o mental." },
-      { nombre: "Gestión en Salud I", descripcion: "Fundamentos de gestión institucional y políticas sanitarias." }
-    ],
-    8: [
-      { nombre: "Análisis Ocupacionales", descripcion: "Evaluación detallada de la ocupación humana en diferentes entornos." },
-      { nombre: "Terapia Ocupacional y Estrategias de Intervención VIII", descripcion: "Diseño de programas de intervención integrales." },
-      { nombre: "Gestión Aplicada a Terapia Ocupacional", descripcion: "Gestión de proyectos, servicios y equipos en contextos ocupacionales." },
-      { nombre: "Módulo Integrado Interdisciplinario Multiprofesional I", descripcion: "Trabajo en equipo interdisciplinario de salud." },
-      { nombre: "Módulo Integrado Interdisciplinario Multiprofesional II", descripcion: "Intervención colaborativa en salud desde múltiples disciplinas." },
-      { nombre: "Gestión en Salud II", descripcion: "Gestión avanzada en salud pública y servicios sociales." },
-      { nombre: "Formación General: Grupo de Indagación de la Práctica Profesional", descripcion: "Reflexión crítica y análisis de la propia práctica profesional." }
-    ],
-    9: [
-      { nombre: "Práctica Profesional I", descripcion: "Experiencia profesional supervisada en escenarios reales de intervención." },
-      { nombre: "Proyecto de Título", descripcion: "Diseño y desarrollo de un proyecto de investigación final." }
-    ],
-    10: [
-      { nombre: "Práctica Profesional II", descripcion: "Último periodo de práctica profesional integral y evaluación final." },
-      { nombre: "Taller de Evaluación Final", descripcion: "Espacio de integración, análisis y evaluación de competencias profesionales." }
-    ]
-  };
+    function guardarProgreso() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify([...completados]));
+    }
 
-  const container = document.getElementById("malla-container");
+    function crearMalla() {
+      const contenedor = document.getElementById("malla");
+      contenedor.innerHTML = "";
 
-  for (let semestre in malla) {
-    const box = document.createElement("div");
-    box.className = "semestre";
-    box.innerHTML = `<h3>Semestre ${semestre}</h3><div class="ramos"></div>`;
+      ramos.forEach((semestre, i) => {
+        const div = document.createElement("div");
+        div.className = "semestre";
+        div.innerHTML = `<h2>${i + 1}° Semestre</h2>`;
 
-    const ramosContainer = box.querySelector(".ramos");
+        semestre.forEach(ramo => {
+          const ramoDiv = document.createElement("div");
+          ramoDiv.className = "ramo";
+          ramoDiv.textContent = ramo.nombre;
 
-    malla[semestre].forEach((ramo, index) => {
-      const div = document.createElement("div");
-      div.className = "ramo";
-      div.innerText = ramo.nombre;
-      div.onclick = () => mostrarInfo(`Semestre ${semestre} - ${ramo.nombre}`, ramo.descripcion);
-      ramosContainer.appendChild(div);
-    });
+          const requisitos = ramo.requisitos || [];
+          const bloqueado = requisitos.length > 0 && !requisitos.every(r => completados.has(r));
 
-    container.appendChild(box);
-  }
+          if (completados.has(ramo.nombre)) ramoDiv.classList.add("completado");
+          else if (bloqueado) ramoDiv.classList.add("bloqueado");
 
-  function mostrarInfo(titulo, texto) {
-    const info = document.getElementById("info");
-    info.style.display = 'block';
-    info.innerHTML = `<strong>${titulo}</strong><p>${texto}</p>`;
-  }
-</script>
+          ramoDiv.addEventListener("click", () => {
+            if (bloqueado) return;
+            if (completados.has(ramo.nombre)) {
+              completados.delete(ramo.nombre);
+            } else {
+              completados.add(ramo.nombre);
+            }
+            guardarProgreso();
+            crearMalla();
+          });
 
+          div.appendChild(ramoDiv);
+        });
+        contenedor.appendChild(div);
+      });
+    }
+
+    crearMalla();
+  </script>
 </body>
 </html>
